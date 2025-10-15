@@ -1,0 +1,25 @@
+# Port server
+server.port=8080
+
+# Konfigurasi database H2
+spring.datasource.url=jdbc:h2:mem:peta_db
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+
+# Otomatis membuat tabel dari entity
+spring.jpa.hibernate.ddl-auto=update
+
+
+server.address=0.0.0.0
+server.port=8080
+
+# H2 Database
+spring.datasource.url=jdbc:h2:file:./data/markers
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true

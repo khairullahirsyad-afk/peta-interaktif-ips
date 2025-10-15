@@ -1,0 +1,30 @@
+package com.example.peta.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import com.example.peta.model.Lokasi;
+import com.example.peta.repository.LokasiRepository;
+import java.util.List;
+
+@Controller
+public class PetaController {
+
+    @Autowired
+    private LokasiRepository lokasiRepository;
+
+    @GetMapping("/")
+    public String index(Model model) {
+        List<Lokasi> semuaLokasi = lokasiRepository.findAll();
+        model.addAttribute("lokasiList", semuaLokasi);
+        return "index";
+    }
+
+    @PostMapping("/tambah-lokasi")
+    @ResponseBody
+    public String tambahLokasi(@RequestBody Lokasi lokasi) {
+        lokasiRepository.save(lokasi);
+        return "sukses";
+    }
+}

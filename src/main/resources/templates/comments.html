@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Komentar Real-Time</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+</head>
+<body>
+    <h2>Komentar Real-Time</h2>
+    <ul id="commentList"></ul>
+
+    <input type="text" id="commentInput" placeholder="Tulis komentar..." />
+    <button onclick="sendComment()">Kirim</button>
+
+    <script>
+        let socket = new SockJS('/ws');
+        let stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function () {
+            console.log("Terhubung ke WebSocket!");
+
+            stompClient.subscribe('/topic/comments', function (message) {
+                let li = document.createElement("li");
+                li.innerText = message.body;
+                document.getElementById("commentList").appendChild(li);
+            });
+        });
+
+        function sendComment() {
+            let input = document.getElementById("commentInput");
+            stompClient.send("/app/sendComment", {}, input.value);
+            input.value = "";
+        }
+    </script>
+</body>
+</html>

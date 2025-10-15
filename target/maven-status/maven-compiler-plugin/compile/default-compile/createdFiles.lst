@@ -1,0 +1,10 @@
+com\example\map\MarkerRepository.class
+com\example\map\MarkerController.class
+com\example\peta\repository\LokasiRepository.class
+com\example\peta\PetaInteraktifApplication.class
+com\example\map\Marker.class
+com\example\peta\controller\CommentController.class
+com\example\peta\controller\LocationController.class
+com\example\peta\config\WebSocketConfig.class
+com\example\peta\controller\CommentController$CommentMessage.class
+com\example\peta\model\Lokasi.class
